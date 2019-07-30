@@ -14,14 +14,15 @@
     ];
 
   # --- Use the GRUB 2 boot loader + legacy boot (for dual-boot with ChromeOS)
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.version = 2;
-  # boot.loader.grub.device = "/dev/mmcblk0"; # or "nodev" for efi only
-  # boot.loader.grub.forceInstall = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/mmcblk0"; # or "nodev" for efi only
+  boot.loader.grub.forceInstall = true;
   # --- Use EFI boot with systemd-boot (after full firmware replacement)
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # --- Compress RAM
+  zramSwap.enable = true;
   networking.hostName = "pixie"; # Define your hostname.
   networking.networkmanager.enable = true;
   # Select internationalisation properties.
@@ -40,12 +41,12 @@
     firefox
     fuse
     git
-    vscode
     file
     powertop
     chromium
     xclip
-    (python37.withPackages(ps: with ps; [ numpy jupyter ]))
+    slack
+    vscode
  ];
   # List services that you want to enable:
 
