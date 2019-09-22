@@ -14,17 +14,19 @@
     ];
 
   # --- Use the GRUB 2 boot loader + legacy boot (for dual-boot with ChromeOS)
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/mmcblk0"; # or "nodev" for efi only
-  boot.loader.grub.forceInstall = true;
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.version = 2;
+  # boot.loader.grub.device = "/dev/mmcblk0"; # or "nodev" for efi only
+  # boot.loader.grub.forceInstall = true;
   # --- Use EFI boot with systemd-boot (after full firmware replacement)
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   # --- Compress RAM
   zramSwap.enable = true;
   networking.hostName = "pixie"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # --- Get latest kernel for ALSA topology fix
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -47,6 +49,7 @@
     xclip
     slack
     vscode
+    gnumake
  ];
   # List services that you want to enable:
 
